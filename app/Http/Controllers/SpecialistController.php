@@ -16,7 +16,8 @@ class SpecialistController extends Controller
             $specialistData[] = [
                 'name' => $specialist->name,
                 'title' => $specialist->title,
-                'hospital' => $specialist->hospital->name
+                'hospital' => $specialist->hospital->name,
+                'filter' => $specialist->filter
             ];
         }
 

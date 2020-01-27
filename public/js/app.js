@@ -1919,17 +1919,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      specialists: []
+      specialists: [],
+      search: ""
     };
   },
   methods: {},
   created: function created() {
     this.$http.get('/api/specialists/').then(function (data) {
-      this.specialists = data.body.slice(0, 10);
+      this.specialists = data.body;
     });
+  },
+  computed: {
+    filteredSpecialists: function filteredSpecialists() {
+      var _this = this;
+
+      return this.specialists.filter(function (specialist) {
+        var specialistData = specialist.name + specialist.title + specialist.hospital;
+        return specialistData.toLowerCase().match(_this.search.toLowerCase());
+      });
+    }
   }
 });
 
@@ -19592,23 +19619,83 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { attrs: { id: "show-specialists" } },
+    { staticClass: "show-specialists" },
     [
-      _c("h1", [_vm._v("All specialists")]),
-      _vm._v(" "),
-      _vm._l(_vm.specialists, function(specialist) {
-        return _c("div", { staticClass: "show-specialist" }, [
-          _c("h2", [_vm._v(_vm._s(specialist.name))]),
+      _c(
+        "v-container",
+        { attrs: { fluid: "" } },
+        [
+          _c("h1", [_vm._v("All specialists")]),
           _vm._v(" "),
-          _c("span", { staticClass: "h3" }, [_vm._v(_vm._s(specialist.title))]),
+          _c(
+            "v-row",
+            [
+              _c(
+                "v-col",
+                { staticClass: "d-flex", attrs: { cols: "12", sm: "4" } },
+                [
+                  _c("v-select", {
+                    attrs: { items: _vm.items, label: "Standard" }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                { staticClass: "d-flex", attrs: { cols: "12", sm: "8" } },
+                [
+                  _c("v-text-field", {
+                    attrs: { type: "text", placeholder: "Search specialists" },
+                    model: {
+                      value: _vm.search,
+                      callback: function($$v) {
+                        _vm.search = $$v
+                      },
+                      expression: "search"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("span", { staticClass: "h3" }, [
-            _vm._v(_vm._s(specialist.hospital))
-          ])
-        ])
-      })
+          _c(
+            "v-row",
+            _vm._l(_vm.filteredSpecialists, function(specialist) {
+              return _c(
+                "v-col",
+                { attrs: { cols: "6" } },
+                [
+                  _c(
+                    "v-card",
+                    { staticClass: "p-b-5" },
+                    [
+                      _c("v-card-title", [_vm._v(_vm._s(specialist.name))]),
+                      _vm._v(" "),
+                      _c("v-card-text", [
+                        _vm._v(
+                          _vm._s(specialist.title) +
+                            " at " +
+                            _vm._s(specialist.hospital)
+                        )
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            }),
+            1
+          )
+        ],
+        1
+      )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
