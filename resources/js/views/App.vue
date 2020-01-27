@@ -1,13 +1,21 @@
 <template>
-    <v-app>
+    <v-app class="grey lighten-4">
         <v-content>
-            <v-container>
-                <v-autocomplete>Search Bar</v-autocomplete>
-            </v-container>
+            <search></search>
         </v-content>
     </v-app>
 </template>
 
 <script>
-export default {};
+import Search from '@/js/components/Search';
+
+export default {
+    name: 'App',
+    components: { Search},
+    data () {
+        return {
+            //
+        }
+    }
+};
 </script>

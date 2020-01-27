@@ -10,8 +10,17 @@ class SpecialistController extends Controller
     public function index()
     {
         $specialists = Specialist::get();
+        $specialistData = [];
 
-        return json_encode($specialists);
+        foreach($specialists as $specialist) {
+            $specialistData[] = [
+                'name' => $specialist->name,
+                'title' => $specialist->title,
+                'hospital' => $specialist->hospital->name
+            ];
+        }
+
+        return json_encode($specialistData);
     }
 
     public function show($id)
