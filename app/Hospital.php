@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Specialist;
 
 class Hospital extends Model
 {
@@ -21,4 +22,9 @@ class Hospital extends Model
     protected $fillable = [
         'name', 'location', 'type', 'href', 'logo', 'xml'
     ];
+
+    public function specialists()
+    {
+        return $this->hasMany(Specialist::class, 'hospital_id');
+    }
 }

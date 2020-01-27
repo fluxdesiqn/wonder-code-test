@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Hospital;
 
 class Specialist extends Model
 {
@@ -21,4 +22,9 @@ class Specialist extends Model
     protected $fillable = [
         'name', 'src', 'title', 'hospital_id'
     ];
+
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class, 'hospital_id');
+    }
 }

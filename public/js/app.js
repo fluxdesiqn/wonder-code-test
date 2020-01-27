@@ -1916,6 +1916,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -19545,7 +19547,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-app",
-    [_c("v-content", [_c("v-container", [_vm._v("Hello World")])], 1)],
+    [
+      _c(
+        "v-content",
+        [_c("v-container", [_c("v-autocomplete", [_vm._v("Search Bar")])], 1)],
+        1
+      )
+    ],
     1
   )
 }

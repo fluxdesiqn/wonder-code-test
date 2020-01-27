@@ -11,4 +11,12 @@
 |
 */
 
+Route::get('/api/hospitals', 'HospitalController@index');
+Route::get('/api/hospital/{id}', 'HospitalController@show');
+Route::get('/api/hospital/{id}/specialists', 'HospitalController@showSpecialists');
+Route::get('/api/hospital/{hospital_id}/specialist/{id}', 'HospitalController@showSpecialist');
+
+Route::get('/api/specialists', 'SpecialistController@index');
+Route::get('/api/specialist/{id}', 'SpecialistController@show');
+
 Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
