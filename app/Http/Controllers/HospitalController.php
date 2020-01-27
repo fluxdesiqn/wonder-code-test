@@ -15,6 +15,13 @@ class HospitalController extends Controller
         return json_encode($hospitals);
     }
 
+    public function names()
+    {
+        $hospitals = Hospital::pluck('name')->toArray();
+
+        return json_encode($hospitals);
+    }
+
     public function show($id)
     {
         $hospital = Hospital::where('id', $id)->first();

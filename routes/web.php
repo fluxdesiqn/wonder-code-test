@@ -12,6 +12,7 @@
 */
 
 Route::get('/api/hospitals', 'HospitalController@index');
+Route::get('/api/hospitals/names', 'HospitalController@names');
 Route::get('/api/hospital/{id}', 'HospitalController@show');
 Route::get('/api/hospital/{id}/specialists', 'HospitalController@showSpecialists');
 Route::get('/api/hospital/{hospital_id}/specialist/{id}', 'HospitalController@showSpecialist');

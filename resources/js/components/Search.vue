@@ -5,7 +5,7 @@
             <v-row>
                 <v-col class="d-flex" cols="12" sm="4">
                     <v-select
-                        :items="items"
+                        :items="hospitals"
                         label="Standard"
                     ></v-select>
                 </v-col>
@@ -30,6 +30,7 @@ export default {
     data() {
         return {
             specialists: [],
+            hospitals: [],
             search: ""
         }
     },
@@ -39,6 +40,9 @@ export default {
     created() {
         this.$http.get('/api/specialists/').then(function(data) {
             this.specialists = data.body;
+        });
+        this.$http.get('/api/hospitals/names').then(function(data) {
+            this.hospitals = data.body;
         });
     },
     computed: {

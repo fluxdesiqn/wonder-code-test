@@ -1939,6 +1939,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       specialists: [],
+      hospitals: [],
       search: ""
     };
   },
@@ -1946,6 +1947,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.$http.get('/api/specialists/').then(function (data) {
       this.specialists = data.body;
+    });
+    this.$http.get('/api/hospitals/names').then(function (data) {
+      this.hospitals = data.body;
     });
   },
   computed: {
@@ -19635,7 +19639,7 @@ var render = function() {
                 { staticClass: "d-flex", attrs: { cols: "12", sm: "4" } },
                 [
                   _c("v-select", {
-                    attrs: { items: _vm.items, label: "Standard" }
+                    attrs: { items: _vm.hospitals, label: "Standard" }
                   })
                 ],
                 1
