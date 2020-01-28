@@ -1940,6 +1940,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       specialists: [],
       hospitals: [],
+      dropdown: "",
       search: ""
     };
   },
@@ -1957,7 +1958,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       return this.specialists.filter(function (specialist) {
-        var specialistData = specialist.name + specialist.title + specialist.hospital;
+        var specialistHospital = specialist.hospital;
+
+        if (_this.dropdown !== "" && specialistHospital !== _this.dropdown) {
+          return null;
+        }
+
+        var specialistData = specialist.name + specialist.title + specialistHospital;
         return specialistData.toLowerCase().match(_this.search.toLowerCase());
       });
     }
@@ -19639,7 +19646,14 @@ var render = function() {
                 { staticClass: "d-flex", attrs: { cols: "12", sm: "4" } },
                 [
                   _c("v-select", {
-                    attrs: { items: _vm.hospitals, label: "Standard" }
+                    attrs: { items: _vm.hospitals, label: "Hospital" },
+                    model: {
+                      value: _vm.dropdown,
+                      callback: function($$v) {
+                        _vm.dropdown = $$v
+                      },
+                      expression: "dropdown"
+                    }
                   })
                 ],
                 1
@@ -19671,7 +19685,7 @@ var render = function() {
             _vm._l(_vm.filteredSpecialists, function(specialist) {
               return _c(
                 "v-col",
-                { attrs: { cols: "6" } },
+                { attrs: { cols: "12", sm: "6" } },
                 [
                   _c(
                     "v-card",

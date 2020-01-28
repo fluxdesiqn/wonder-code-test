@@ -112,7 +112,6 @@ class specialistData extends Command
             $response = $guzzleClient->get($hospital['xml']);
             
             if($response->getStatusCode() !== 200) {
-                dd('here');
                 continue;
             }
 
@@ -187,7 +186,6 @@ class specialistData extends Command
                 }
                 // Loop through specialists
                 foreach($serviceParsedFile->people->children() as $specialist) {
-                    dd($specialist);
                     // Store specialist data
                     $specialistData = [
                         'name' => $specialist['name']->__toString(),
