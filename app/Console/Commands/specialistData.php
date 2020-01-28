@@ -185,7 +185,6 @@ class specialistData extends Command
                 if($serviceParsedFile->people->count() == 0) {
                     continue;
                 }
-                dd($serviceParsedFile);
                 // Loop through specialists
                 foreach($serviceParsedFile->people->children() as $specialist) {
                     dd($specialist);
